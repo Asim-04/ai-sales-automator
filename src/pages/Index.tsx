@@ -5,6 +5,7 @@ import Benefits from "@/components/Benefits";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Pricing />
       <Testimonials />
       <CTA />
+      <Footer />
     </div>
   );
 };
