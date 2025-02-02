@@ -1,15 +1,11 @@
-import { useRef, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { useScroll } from 'framer-motion';
-import { Sphere, MeshDistortMaterial, OrbitControls } from '@react-three/drei';
+import { Sphere, MeshDistortMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 
 const AnimatedSphere = () => {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const { scrollYProgress } = useScroll();
-
   return (
-    <Sphere ref={meshRef} args={[1, 64, 64]} position={[0, 0, 0]}>
+    <Sphere args={[1, 32, 32]} position={[0, 0, 0]}>
       <MeshDistortMaterial
         color="#8B5CF6"
         attach="material"
@@ -28,7 +24,6 @@ const Scene = () => {
       <ambientLight intensity={0.5} />
       <directionalLight position={[10, 10, 5]} intensity={1} />
       <AnimatedSphere />
-      <OrbitControls enableZoom={false} enablePan={false} />
     </>
   );
 };
@@ -42,9 +37,7 @@ const ThreeScene = () => {
           antialias: true,
           alpha: true,
           powerPreference: "high-performance",
-          preserveDrawingBuffer: true,
         }}
-        dpr={window.devicePixelRatio}
         style={{ position: 'absolute' }}
       >
         <Suspense fallback={null}>
