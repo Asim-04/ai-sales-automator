@@ -1,7 +1,17 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Scan, Mail, CheckCircle } from "lucide-react";
+import { useRef } from "react";
 
 const Process = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.5, 1]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [0.95, 1]);
+
   const steps = [
     {
       icon: <Scan className="w-12 h-12 text-primary" />,
@@ -43,7 +53,11 @@ const Process = () => {
             Three simple steps to automated email success
           </motion.p>
         </div>
-        <div className="grid md:grid-cols-3 gap-12 relative">
+        <motion.div 
+          ref={containerRef}
+          style={{ opacity, scale }}
+          className="grid md:grid-cols-3 gap-12 relative"
+        >
           {/* Connection lines */}
           <div className="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-gradient-to-r from-primary/20 to-secondary/20 -translate-y-1/2"></div>
           
@@ -70,7 +84,7 @@ const Process = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
