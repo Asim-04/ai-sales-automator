@@ -1,12 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import ThreeScene from "./ThreeScene";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient pt-20">
-      <ThreeScene />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,6 +64,7 @@ const Hero = () => {
           </motion.p>
         </motion.div>
       </div>
+      <div className="absolute inset-0 bg-gradient opacity-30"></div>
       
       {/* Abstract shapes in the background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
