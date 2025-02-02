@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useScroll } from 'framer-motion';
 import { Sphere, MeshDistortMaterial } from '@react-three/drei';
+import * as THREE from 'three';
 
 const AnimatedSphere = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -34,7 +35,14 @@ const AnimatedSphere = () => {
 const ThreeScene = () => {
   return (
     <div className="absolute inset-0 -z-10 opacity-60">
-      <Canvas camera={{ position: [0, 0, 5] }}>
+      <Canvas
+        camera={{ position: [0, 0, 5] }}
+        gl={{ 
+          antialias: true,
+          alpha: true,
+          powerPreference: "high-performance"
+        }}
+      >
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <AnimatedSphere />
