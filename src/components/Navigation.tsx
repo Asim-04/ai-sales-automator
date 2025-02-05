@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -20,6 +20,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isMobile = useIsMobile();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,18 +79,16 @@ const Navigation = () => {
               About Us
             </Link>
             <Link 
-              to="/contact" 
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              Contact Us
-            </Link>
-            <Link 
               to="/blogs" 
               className="text-sm font-medium hover:text-primary transition-colors"
             >
               Blogs
             </Link>
-            <Button variant="default" size="sm">
+            <Button 
+              variant="default" 
+              size="sm"
+              onClick={() => navigate('/trial')}
+            >
               Start Free Trial
             </Button>
           </div>
@@ -108,9 +107,6 @@ const Navigation = () => {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/about" className="w-full">About Us</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/contact" className="w-full">Contact Us</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/blogs" className="w-full">Blogs</Link>
