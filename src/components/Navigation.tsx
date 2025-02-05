@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -39,11 +38,11 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <img 
-              src="/lovable-uploads/20f8adf2-3e9c-450b-8af2-34e1caf23697.png"
+              src="/lovable-uploads/66f47924-4a66-48e8-879d-e9ff07aea7e1.png"
               alt="SequenceLab Logo"
-              className="h-8 w-auto"
+              className="h-12 w-auto" // Increased from h-8 to h-12
             />
             <Link to="/" className="text-2xl font-bold text-primary">
               SequenceLab
