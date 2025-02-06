@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -38,19 +39,31 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
             <img 
               src="/lovable-uploads/66f47924-4a66-48e8-879d-e9ff07aea7e1.png"
               alt="SequenceLab Logo"
-              className="h-12 w-auto" // Increased from h-8 to h-12
+              className="h-14 w-auto" // Increased from h-12 to h-14
             />
-            <Link to="/" className="text-2xl font-bold text-primary">
+            <span className="text-2xl font-bold text-primary">
               SequenceLab
-            </Link>
-          </div>
+            </span>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/" 
+              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+            >
+              Home
+            </Link>
+            <Link 
+              to="/about" 
+              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+            >
+              About Us
+            </Link>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -76,13 +89,6 @@ const Navigation = () => {
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
-
-            <Link 
-              to="/about" 
-              className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
-            >
-              About Us
-            </Link>
             <Link 
               to="/blogs" 
               className="text-sm font-medium text-primary hover:text-primary/80 transition-colors"
@@ -109,10 +115,13 @@ const Navigation = () => {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 bg-muted/95 animate-in slide-in-from-top-2 duration-200">
                 <DropdownMenuItem>
-                  <Link to="/products" className="w-full text-primary">Products</Link>
+                  <Link to="/" className="w-full text-primary">Home</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/about" className="w-full text-primary">About Us</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/products" className="w-full text-primary">Products</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/blogs" className="w-full text-primary">Blogs</Link>
@@ -127,3 +136,4 @@ const Navigation = () => {
 };
 
 export default Navigation;
+
