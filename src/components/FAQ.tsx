@@ -1,6 +1,8 @@
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -80,6 +82,12 @@ const faqs = [
 ];
 
 const FAQ = () => {
+  const [visibleQuestions, setVisibleQuestions] = useState(4);
+  
+  const showMoreQuestions = () => {
+    setVisibleQuestions(prev => Math.min(prev + 4, faqs.length));
+  };
+
   return (
     <section className="py-20 bg-gradient-to-b from-muted to-muted/50">
       <div className="container mx-auto px-6 max-w-4xl">
@@ -90,13 +98,13 @@ const FAQ = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 text-primary">
             Frequently Asked Questions
           </h2>
         </motion.div>
 
         <Accordion type="single" collapsible className="w-full space-y-4">
-          {faqs.map((faq, index) => (
+          {faqs.slice(0, visibleQuestions).map((faq, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -105,16 +113,33 @@ const FAQ = () => {
               viewport={{ once: true }}
             >
               <AccordionItem value={`item-${index}`} className="bg-white rounded-lg px-6">
-                <AccordionTrigger className="text-lg font-medium text-primary hover:no-underline">
+                <AccordionTrigger className="text-base md:text-lg font-medium text-primary hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-primary/80">
+                <AccordionContent className="text-sm md:text-base text-primary/80">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             </motion.div>
           ))}
         </Accordion>
+
+        {visibleQuestions < faqs.length && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="flex justify-center mt-8"
+          >
+            <button
+              onClick={showMoreQuestions}
+              className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
+            >
+              <span>Show More</span>
+              <ChevronDown className="w-5 h-5" />
+            </button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

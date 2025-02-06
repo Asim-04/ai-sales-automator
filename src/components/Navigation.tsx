@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -36,15 +37,15 @@ const Navigation = () => {
         isScrolled ? "bg-muted/80 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-4 md:px-6 py-2 md:py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-3 hover:opacity-90 transition-opacity">
             <img 
               src="/lovable-uploads/66f47924-4a66-48e8-879d-e9ff07aea7e1.png"
               alt="SequenceLab Logo"
-              className="h-20 w-auto"
+              className="h-12 md:h-20 w-auto"
             />
-            <span className="text-2xl font-bold text-primary">
+            <span className="text-xl md:text-2xl font-bold text-primary">
               SequenceLab
             </span>
           </Link>
@@ -109,21 +110,21 @@ const Navigation = () => {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="text-primary">
-                  <Menu className="h-6 w-6" />
+                  <Menu className="h-5 w-5" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-48 bg-muted/95 animate-in slide-in-from-top-2 duration-200">
                 <DropdownMenuItem>
-                  <Link to="/" className="w-full text-primary">Home</Link>
+                  <Link to="/" className="w-full text-primary text-sm">Home</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/about" className="w-full text-primary">About Us</Link>
+                  <Link to="/about" className="w-full text-primary text-sm">About Us</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/products" className="w-full text-primary">Products</Link>
+                  <Link to="/products" className="w-full text-primary text-sm">Products</Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/blogs" className="w-full text-primary">Blogs</Link>
+                  <Link to="/blogs" className="w-full text-primary text-sm">Blogs</Link>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
