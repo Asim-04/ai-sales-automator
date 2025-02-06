@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useNavigate } from "react-router-dom";
@@ -43,7 +42,7 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/66f47924-4a66-48e8-879d-e9ff07aea7e1.png"
               alt="SequenceLab Logo"
-              className="h-14 w-auto" // Increased from h-12 to h-14
+              className="h-20 w-auto"
             />
             <span className="text-2xl font-bold text-primary">
               SequenceLab
@@ -136,4 +135,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
