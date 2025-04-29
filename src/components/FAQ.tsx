@@ -84,13 +84,14 @@ const faqs = [
 const FAQ = () => {
   const [visibleQuestions, setVisibleQuestions] = useState(4);
   const initialQuestionCount = 4;
+  const questionsPerIncrement = 4;
   
   const showMoreQuestions = () => {
-    setVisibleQuestions(prev => Math.min(prev + 4, faqs.length));
+    setVisibleQuestions(prev => Math.min(prev + questionsPerIncrement, faqs.length));
   };
   
   const showLessQuestions = () => {
-    setVisibleQuestions(initialQuestionCount);
+    setVisibleQuestions(prev => Math.max(prev - questionsPerIncrement, initialQuestionCount));
   };
 
   return (
@@ -135,7 +136,7 @@ const FAQ = () => {
           transition={{ duration: 0.3 }}
           className="flex justify-center mt-8"
         >
-          {visibleQuestions < faqs.length ? (
+          {visibleQuestions < faqs.length && (
             <button
               onClick={showMoreQuestions}
               className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
@@ -143,10 +144,12 @@ const FAQ = () => {
               <span>Show More</span>
               <ChevronDown className="w-5 h-5" />
             </button>
-          ) : visibleQuestions > initialQuestionCount && (
+          )}
+          
+          {visibleQuestions > initialQuestionCount && (
             <button
               onClick={showLessQuestions}
-              className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
+              className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors ml-4"
             >
               <span>Show Less</span>
               <ChevronUp className="w-5 h-5" />
