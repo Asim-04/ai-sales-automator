@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -83,9 +83,14 @@ const faqs = [
 
 const FAQ = () => {
   const [visibleQuestions, setVisibleQuestions] = useState(4);
+  const initialQuestionCount = 4;
   
   const showMoreQuestions = () => {
     setVisibleQuestions(prev => Math.min(prev + 4, faqs.length));
+  };
+  
+  const showLessQuestions = () => {
+    setVisibleQuestions(initialQuestionCount);
   };
 
   return (
@@ -124,13 +129,13 @@ const FAQ = () => {
           ))}
         </Accordion>
 
-        {visibleQuestions < faqs.length && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="flex justify-center mt-8"
-          >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="flex justify-center mt-8"
+        >
+          {visibleQuestions < faqs.length ? (
             <button
               onClick={showMoreQuestions}
               className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
@@ -138,8 +143,16 @@ const FAQ = () => {
               <span>Show More</span>
               <ChevronDown className="w-5 h-5" />
             </button>
-          </motion.div>
-        )}
+          ) : visibleQuestions > initialQuestionCount && (
+            <button
+              onClick={showLessQuestions}
+              className="flex items-center space-x-2 text-primary hover:text-primary/80 transition-colors"
+            >
+              <span>Show Less</span>
+              <ChevronUp className="w-5 h-5" />
+            </button>
+          )}
+        </motion.div>
       </div>
     </section>
   );
